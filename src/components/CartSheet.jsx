@@ -62,7 +62,7 @@ const CartSheet = ({ text }) => {
                     text
                 }
             </SheetTrigger>
-            <SheetContent className="sm:min-w-lg w-full p-2">
+            <SheetContent className="sm:min-w-lg w-full p-2 py-0">
                 <SheetHeader className="border-b">
                     <SheetTitle className="flex items-center justify-start gap-3">
                         <ShoppingBagIcon className="size-8 text-primary " />
@@ -89,7 +89,7 @@ const CartSheet = ({ text }) => {
                         </div>
                     </div>) : (<EmptyCard text={`Oops! Your cart is empty.`} />)}
 
-                <SheetFooter >
+                <SheetFooter className="p-0">
                     <SheetClose>
                         <div className="border-b-2 py-2">
                             {cartItems.length > 0 && <Button variant="primary" className="w-full" onClick={handleCheckOut} >Proceed To Checkout  • ₹{total}</Button>}
@@ -97,7 +97,7 @@ const CartSheet = ({ text }) => {
                         </div>
                     </SheetClose>
                     {cartItems.length > 0 ?
-                        (<div className="text-sm flex gap-4 justify-center">
+                        (<div className="text-xs sm:text-sm flex gap-4 justify-center">
                             <span className="text-foreground flex gap-1 items-center justify-center">
                                 <ShieldCheck size={15} className="text-primary" /> Secure Checkout
                             </span>
@@ -110,7 +110,7 @@ const CartSheet = ({ text }) => {
                         </div>
                         )
                         :
-                        (<div className="text-sm flex gap-4 justify-center">
+                        (<div className="text-xs sm:text-sm flex gap-4 justify-center">
                             <span className="text-foreground flex gap-1 items-center justify-center">
                                 <Plus size={15} className="text-primary" /> Add Items
                             </span>

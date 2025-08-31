@@ -25,7 +25,7 @@ const AddToCartBtn = ({ product, variant, classNames }) => {
     return (
         <Button
             variant={variant}
-            className={cn("cursor-pointer", classNames)}
+            className={cn("cursor-pointer ", classNames)}
             onClick={handleAddToCart}
             title="Add to Cart"
         >

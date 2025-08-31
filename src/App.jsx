@@ -60,7 +60,7 @@ function App() {
 
       if (result.success) {
         setUserInfo(result.data.user)
-        setAddresses(result.data?.address)
+        setAddresses(result.data.address)
       }
 
       if (orders.success) {

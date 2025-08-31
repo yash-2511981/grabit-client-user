@@ -84,24 +84,26 @@ const Product = ({ product, open, setOpen, index, ref }) => {
                 </div>
             </div>
 
-            <div className={cn("pt-3 pb-3 flex flex-col px-3 justify-between w-full", { "h-1/2 pb-0": open })} >
-                <div className=''>
-                    <h3 className={cn(
-                        "font-bold text-gray-800 text-sm sm:text-base truncate max-w-[90%] flex justify-between mb-1",
-                        {
-                            "max-w-full text-lg": open
-                        }
-                    )}>
-                        {product.name}
+            <div className={cn("pt-3 pb-3 flex flex-col px-3 justify-between w-full h-fit", { "pb-0": open })} >
+                <div className='flex flex-col gap-0 h-fit'>
+                    <div className='flex justify-between items-center'>
+                        <h3 className={cn(
+                            "font-bold text-gray-800 text-sm sm:text-base truncate max-w-[90%] flex justify-between ",
+                            {
+                                "max-w-full text-lg": open
+                            }
+                        )}>
+                            {product.name}
+                        </h3>
                         {open && (
-                            <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 px-3 py-1 rounded-full border border-yellow-200 flex items-center gap-1 shadow-sm">
+                            <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 px-3 py-0.5 sm:py-1 rounded-full border border-yellow-200 flex items-center gap-1 shadow-sm transition-all duration-100">
                                 <Star className='w-4 h-4 text-yellow-500 fill-yellow-500' />
                                 <span className="text-sm font-bold text-yellow-700">{(product.rating / product.ratingCount).toFixed(1)}</span>
                             </div>
                         )}
-                    </h3>
+                    </div>
                     <p className={cn(
-                        'text-gray-600 text-xs sm:text-sm truncate max-w-[90%]',
+                        'text-gray-600 text-xs sm:text-sm truncate  max-w-[90%]',
                         { 'max-w-full text-sm leading-relaxed line-clamp-2': open }
                     )}>
                         {product.description}
@@ -109,7 +111,7 @@ const Product = ({ product, open, setOpen, index, ref }) => {
                 </div>
 
                 {open && (
-                    <div className='flex-1 flex flex-col justify-between'>
+                    <div className='flex flex-col h-fit mb-8 sm:mb-0 transition-all duration-100'>
                         <div className='flex flex-col mt-2'>
                             <div className='flex gap-2 bg-gray-50 rounded-lg p-3'>
                                 <img
@@ -119,10 +121,10 @@ const Product = ({ product, open, setOpen, index, ref }) => {
                                 />
                                 <div className='flex flex-col w-full justify-between items-start pl-3'>
                                     <div className='flex items-center justify-between w-full'>
-                                        <div className='flex items-center gap-2'>
-                                            <span className="text-xl font-bold text-gray-800">{product.restaurant.name}</span>
+                                        <div className='flex items-center gap-2 w-[90%]'>
+                                            <span className="text-lg sm:text-xl font-bold text-gray-800 max-sm:truncate max-sm:max-w-[95%]">{product.restaurant.name}</span>
                                         </div>
-                                        <div className="bg-white px-2 py-1 rounded-full border border-yellow-200 flex items-center gap-1 shadow-sm">
+                                        <div className="bg-white px-2  py-0.5 sm:py-1 rounded-full border border-yellow-200 flex items-center gap-1 shadow-sm">
                                             <Star className='w-3 h-3 text-yellow-500 fill-yellow-500' />
                                             <span className="text-xs font-bold text-yellow-700">{product.restaurant.rating}</span>
                                         </div>
@@ -130,14 +132,14 @@ const Product = ({ product, open, setOpen, index, ref }) => {
                                     <div className='flex items-center gap-2 text-gray-600'>
                                         <span className="text-sm">{product.restaurant.avgDeliveryTime} Min Delivery</span>
                                     </div>
-                                    <div className='flex items-center gap-2 text-gray-600'>
-                                        <Button variant="Link" className="text-sm p-0 cursor-pointer" onClick={handleMenuViewClick}>View Menu</Button>
+                                    <div className='flex items-center gap-2 text-gray-600 cursor-pointer' onClick={handleMenuViewClick}>
+                                        <Button variant="Link" className="text-sm p-0">View Menu</Button>
                                         <ArrowRight size={15} />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className='grid grid-cols-2 gap-3 pb-4'>
+                        <div className='grid grid-cols-2 gap-3 mt-2 max-sm:pb-6'>
                             <OrderNowBtn product={product} />
                             <Button
                                 className='cursor-pointer'

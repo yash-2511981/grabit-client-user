@@ -17,7 +17,7 @@ const Orders = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="max-h-[calc(100vh-80px)] w-full max-w-7xl mx-auto p-4 flex flex-col">
+        <div className="max-h-[calc(100vh-80px)] w-full max-w-7xl mx-auto px-2 flex flex-col">
             {
                 showOrderDetails && <OrderModal order={order} showModal={setShoOrderDetails} setOrder={setOrder} />
             }
@@ -34,7 +34,7 @@ const Orders = () => {
                 </Button>
             </div>
 
-            <div className={`flex-1 grid gap-6 min-h-0 ${pendingOrders.length > 0 ? 'grid-cols-1 lg:grid-cols-4 md:grid-cols-3' : 'grid-cols-1'}`}>
+            <div className={`flex-1 grid gap-6 min-h-0 h-full ${pendingOrders.length > 0 ? 'grid-cols-1 lg:grid-cols-4 md:grid-cols-3' : 'grid-cols-1'}`}>
 
                 <section className={cn("lg:col-span-1 bg-white rounded-lg shadow-lg flex flex-col overflow-hidden", { "max-md:hidden": showOrderHistory, "lg:hidden": pendingOrders.length === 0 })}>
 

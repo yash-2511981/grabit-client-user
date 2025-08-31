@@ -76,7 +76,7 @@ const Home = () => {
   }
 
   return (
-    <div className='w-full max-w-7xl lg:mx-auto h-[calc(100vh-80px)] p-4 flex flex-col'>
+    <div className='w-full max-w-7xl lg:mx-auto h-[calc(100vh-80px)] py-4 sm:p-4 flex flex-col'>
 
       <div className='h-auto w-full px-4 grid grid-cols-[1fr_auto] max-sm:grid-cols-1 gap-2 items-center flex-shrink-0 border-b max-sm:border-none bg-white/80 backdrop-blur-sm p-2'>
         <div className="gap-2 w-auto flex p-2 overflow-x-auto">

@@ -44,16 +44,16 @@ const OrderModal = ({ order, setOrder, showModal }) => {
     }
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/20 z-50">
+        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/20 z-50 max-sm:px-4 py-10">
 
-            <div className="relative w-full max-w-md max-h-[90vh] flex flex-col">
+            <div className="relative w-full max-w-md max-h-[80vh] sm:max-h-[90vh] flex flex-col">
 
                 <X
                     onClick={() => {
                         showModal(false);
                         setOrder({});
                     }}
-                    className="absolute -top-2 -right-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full size-10 transition-all duration-200 p-2 cursor-pointer hover:scale-110 shadow-lg z-10"
+                    className="absolute -top-2 -right-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full sm:size-10 size-8 transition-all duration-200 p-2 cursor-pointer hover:scale-110 shadow-lg z-10"
                 />
 
 

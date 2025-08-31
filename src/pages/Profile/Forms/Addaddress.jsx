@@ -39,12 +39,12 @@ const AddaddressForm = ({ setShowModal }) => {
 
     return (
         <div className='fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/20 z-50'>
-            <div className='p-6 relative rounded-2xl shadow-2xl animate-in fade-in-0 zoom-in-95 duration-300'>
+            <div className='p-2  sm:p-6 relative rounded-2xl shadow-2xl animate-in fade-in-0 zoom-in-95 duration-300'>
                 <X
                     onClick={() => setShowModal(false)}
                     className='absolute -top-2 -right-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full sm:size-10 size-8 transition-all duration-200 p-2 cursor-pointer hover:scale-110 shadow-lg z-10'
                 />
-                <Card className="p-6 min-w-md w-full bg-white/95 backdrop-blur-sm border-0 shadow-xl">
+                <Card className="py-4 sm:p-6 max-w-md sm:min-w-md w-full bg-white/95 backdrop-blur-sm border-0 shadow-xl">
                     <CardHeader className="pb-4">
                         <CardTitle className="text-2xl font-bold text-gray-800 text-center">
                             Add Address
