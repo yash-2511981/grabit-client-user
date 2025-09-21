@@ -1,3 +1,5 @@
+//TODO:need to adjust ordersProduct array for better back end handling
+
 const checkoutSlices = (set, get) => ({
     orderProducts: [],       // only { product, quantity } for backend order
     displayProducts: [],     // detailed info to display on ui
