@@ -42,7 +42,7 @@ const UpdateProfileForm = ({ setShowModal }) => {
                     onClick={() => setShowModal(false)}
                     className='absolute -top-2 -right-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full sm:size-10 size-8 transition-all duration-200 p-2 cursor-pointer hover:scale-110 shadow-lg z-10'
                 />
-                <Card className="p-6 max-w-md  bg-white/95 backdrop-blur-sm border-0 shadow-xl">
+                <Card className="p-6 w-md  bg-white/95 backdrop-blur-sm border-0 shadow-xl">
                     <CardHeader className="pb-4">
                         <CardTitle className="text-2xl font-bold text-gray-800 text-center">
                             Update Profile Details
