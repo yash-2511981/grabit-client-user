@@ -1,20 +1,18 @@
 import MenuItem from "@/components/MenuItem";
 import { Button } from "@/components/ui/button";
 import { useAppStore } from "@/store/store";
-import { Star, Clock, X } from "lucide-react";
+import { Clock, X } from "lucide-react";
 
 const Menuitems = () => {
-    const { products, showMenu, showMenuRestaurant, setShowMenu, setShowMenuRestaurant } = useAppStore();
+    const { products, showMenu, showMenuRestaurant, setShowMenu, setShowMenuRestaurant, category } = useAppStore();
     const { _id: resId, name, imageUrl, address, rating, avgDeliveryTime } = showMenuRestaurant;
 
     if (!showMenu && showMenuRestaurant) return null;
 
     return (
         <div className="p-4 pb-8 space-y-6">
-            {/* Fixed Restaurant Header Card */}
             <div className="w-full bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl border border-orange-100 shadow-lg overflow-hidden h-full">
                 <div className="h-full flex gap-0">
-                    {/* Fixed Image Container */}
                     <div className="w-32 flex-shrink-0">
                         <img
                             src={imageUrl}
@@ -23,7 +21,6 @@ const Menuitems = () => {
                         />
                     </div>
 
-                    {/* Content Section */}
                     <div className="flex-1 flex flex-col justify-center px-4 py-3 min-w-0 ">
                         <h2 className="text-gray-800 font-bold text-lg md:text-xl leading-tight mb-1">{name}</h2>
                         <p className="text-gray-600 font-medium text-sm mb-2 truncate">{address}</p>
@@ -57,7 +54,7 @@ const Menuitems = () => {
             </div>
 
             {/* Menu Items Grid */}
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            {category === "product" && <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 {products.map((product, index) => {
                     if (product.restaurant._id === resId) {
                         return (
@@ -65,7 +62,7 @@ const Menuitems = () => {
                         )
                     }
                 })}
-            </div>
+            </div>}
         </div>
     );
 };

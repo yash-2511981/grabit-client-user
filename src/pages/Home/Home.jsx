@@ -10,6 +10,7 @@ import Loading from "@/components/ui/loading"
 import Products from "./compoenents/Products"
 import Restaurants from "./compoenents/Restaurants"
 import Menuitems from "./compoenents/Menuitems"
+import Subscriptions from "./compoenents/Subscriptions"
 
 const Home = () => {
   const { vegMode, category, setProducts, setRestaurants, setSubscriptions, setShowMenu, setShowMenuRestaurant, showMenu } = useAppStore()
@@ -99,7 +100,7 @@ const Home = () => {
           <div className="p-4 pb-8">
             {isEmpty && <EmptyCard text="Opps! There is no restaurant near you" />}
             {category === "dish" && <Products handleOpenProduct={handleOpenProduct} openProduct={openProduct} cardRefs={cardRefs} />}
-            {category === "restaurants" && <Restaurants />}
+            {category === "subscriptions" && <Subscriptions />}
           </div>
         </div>}
 

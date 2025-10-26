@@ -16,14 +16,12 @@ const checkoutSlices = (set, get) => ({
             quantity: item.quantity,
         }))
 
-
         set({
             orderProducts: newOrderProducts,
             displayProducts: products,
             orderAmount: amount,
             isOrderFromCart
         })
-
         get().setOrderAmount()
     },
 
