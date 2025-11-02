@@ -85,10 +85,10 @@ const Subscription = ({ subscription }) => {
                 {showMenu && (
                     <div className="p-3 border-t border-gray-200 bg-white max-h-56 overflow-y-auto">
                         <div className="grid grid-cols-2 gap-x-3 gap-y-3 text-xs">
-                            {weekDays.map((day) => (
+                            {weekDays.map((day, index) => (
                                 <div key={day} className="flex flex-col">
                                     <span className="font-bold text-gray-800 capitalize mb-0.5">{day}</span>
-                                    <span className="text-gray-600 leading-snug line-clamp-2">{subscription[day]}</span>
+                                    <span className="text-gray-600 leading-snug line-clamp-2">{subscription.weeklyMenu[index]}</span>
                                 </div>
                             ))}
                         </div>

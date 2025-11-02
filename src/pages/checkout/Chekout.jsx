@@ -37,10 +37,11 @@ const Checkout = () => {
   const placeOrder = async () => {
     if (selectedAddress === null) return;
     const result = await post(PLACE_ORDER,
-      { amount, deliveryCharge, paymentMode, orderProducts, orderAddress, isOrderFromCart, platFormFee, gst })
+      { paymentMode, orderProducts, orderAddress, isOrderFromCart })
     if (result.success) {
       updatePendingOrders(result.data.order)
       navigate("/orders")
+      if(isOrderFromCart)
       clearCart()
     }
   }
