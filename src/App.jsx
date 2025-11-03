@@ -47,24 +47,25 @@ function App() {
 
   useEffect(() => {
     const getUserInfo = async () => {
-
       setLoading(true);
 
       const result = await get(GET_USER_INFO)
-      const cartItems = await get(GET_CART_ITEMS)
-      const orders = await get(GET_ORDER_DETAILS)
-
-      if (cartItems.success) {
-        setCartItems(cartItems.data.cartItems)
-      }
 
       if (result.success) {
         setUserInfo(result.data.user)
         setAddresses(result.data.address)
-      }
 
-      if (orders.success) {
-        setOrdersDetails(orders.data.completedOrders, orders.data.pendingOrders)
+        // Only fetch additional data if user exists
+        const cartItems = await get(GET_CART_ITEMS)
+        const orders = await get(GET_ORDER_DETAILS)
+
+        if (cartItems.success) {
+          setCartItems(cartItems.data.cartItems)
+        }
+
+        if (orders.success) {
+          setOrdersDetails(orders.data.completedOrders, orders.data.pendingOrders)
+        }
       }
 
       setLoading(false)

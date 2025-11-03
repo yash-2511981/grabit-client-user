@@ -12,7 +12,7 @@ import { useAppStore } from "@/store/store"
 import { useNavigate } from "react-router-dom"
 
 export function Profile() {
-    const { userInfo, setUserInfo, addresses } = useAppStore()
+    const { userInfo, setUserInfo, addresses, resetAllState } = useAppStore()
     const { post } = useApi()
     const navigate = useNavigate()
 
@@ -21,6 +21,7 @@ export function Profile() {
         if (result.success) {
             setUserInfo(null)
             navigate("/")
+            resetAllState()
         }
     }
 

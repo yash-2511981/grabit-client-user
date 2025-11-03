@@ -3,7 +3,7 @@ import React from 'react'
 
 const CategoryBadge = ({ category }) => {
     return (
-        <div className="absolute top-3 left-3">
+        <div className="">
             <div className={cn(
                 "w-5 h-5 rounded-sm border-2 bg-white flex items-center justify-center shadow-sm",
                 "border-green-500",

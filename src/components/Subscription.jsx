@@ -37,7 +37,7 @@ const Subscription = ({ subscription }) => {
                                 {subscription.name}
                             </h3>
                         </div>
-                        <p className="text-sm text-gray-600 truncate">{subscription.restaurant}</p>
+                        <p className="text-sm text-gray-600 truncate">{subscription.restaurant.name}</p>
                     </div>
 
 
@@ -48,8 +48,7 @@ const Subscription = ({ subscription }) => {
                 </div>
 
 
-                <div className="flex items-center justify-between text-xs pt-2 border-t border-gray-100">
-                    <CategoryBadge category={subscription.category} />
+                <div className="relative flex items-center justify-between text-xs pt-2 border-t border-gray-100">
 
                     <div className="flex items-center gap-4">
 
@@ -66,6 +65,7 @@ const Subscription = ({ subscription }) => {
                             </div>
                         )}
                     </div>
+                    <CategoryBadge category={subscription.category} />
                 </div>
             </div>
 

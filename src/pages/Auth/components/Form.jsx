@@ -22,7 +22,7 @@ const Form = () => {
     const [error, seterror] = useState("");
 
     const { post } = useApi()
-    const { setUserInfo } = useAppStore()
+    const { setUserInfo, setAddresses } = useAppStore()
 
     const debounceConfirmPass = useDebounce(confirmPass, 1000)
 
@@ -55,6 +55,7 @@ const Form = () => {
 
         if (result?.success) {
             setUserInfo(result.data.user)
+            setAddresses(result.data.address)
         }
     }
 

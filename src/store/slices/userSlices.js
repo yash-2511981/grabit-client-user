@@ -1,3 +1,4 @@
+import { initialState } from "@/lib/utils";
 
 const userSlices = (set, get) => ({
     userInfo: null,
@@ -113,6 +114,9 @@ const userSlices = (set, get) => ({
         products.splice(index, 0, item);
         set({ products })
     },
+    resetAllState: () => {
+        set({ ...initialState })
+    }
 });
 
 export default userSlices;
