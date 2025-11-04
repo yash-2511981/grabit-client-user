@@ -2,10 +2,11 @@ import Address from "@/components/Address";
 import CartItem from "@/components/CartItem";
 import { Button } from "@/components/ui/button";
 import useApi from "@/hooks/useApi";
-import { PLACE_ORDER } from "@/lib/constants";
+import { INITIATE_PAYMENT, PLACE_ORDER } from "@/lib/constants";
+import { loadScript } from "@/lib/utils";
 import { useAppStore } from "@/store/store";
 import { BadgeIndianRupee, Clock, ShieldCheck } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
@@ -24,28 +25,73 @@ const Checkout = () => {
     orderAddress,
     isOrderFromCart,
     platFormFee,
-    gst
+    gst,
+    clearCart,
+    updatePendingOrders,
+    userInfo
   } = useAppStore();
+  const navigate = useNavigate()
+  const { post } = useApi()
 
   const [selectedAddress, setSelectedAddress] = useState(null);
 
-  const { post } = useApi()
-  const { updatePendingOrders, clearCart } = useAppStore()
-  const navigate = useNavigate()
-  const amount = orderAmount + deliveryCharge + platFormFee + gst
+  const amount = useMemo(() => {
+    return orderAmount + deliveryCharge + platFormFee + gst
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderAmount, gst])
 
-  const placeOrder = async () => {
+  const placeOrder = async (razorpayOrderId) => {
     if (selectedAddress === null) return;
     const result = await post(PLACE_ORDER,
-      { paymentMode, orderProducts, orderAddress, isOrderFromCart })
+      { paymentMode, orderProducts, orderAddress, isOrderFromCart, razorpayOrderId })
     if (result.success) {
       updatePendingOrders(result.data.order)
       navigate("/orders")
-      if(isOrderFromCart)
-      clearCart()
+      if (isOrderFromCart)
+        clearCart()
     }
   }
 
+  const handleCheckout = async () => {
+    if (paymentMode === "cod") {
+      placeOrder()
+    } else {
+      const requestPayment = await post(INITIATE_PAYMENT, { orderProducts })
+      const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+      if (!res) {
+        return;
+      }
+      if (requestPayment.success) {
+
+        const { razorpayOrderId, amount } = requestPayment.data
+
+        const options = {
+          key: import.meta.env.VITE_RAZORPAY_API_KEY,
+          amount: (amount * 100).toString(),
+          currency: 'INR',
+          name: 'Grabit',
+          description: 'Payment integration in test mode',
+          order_id: razorpayOrderId,
+          handler: async () => {
+            await placeOrder(razorpayOrderId);
+          },
+          prefill: {
+            name: userInfo.firstName + ' ' + userInfo.lastName,
+            email: userInfo.email,
+            contact: userInfo.phone,
+          },
+          theme: {
+            color: '#FFD700', 
+          },
+        };
+
+
+        const rzp = new window.Razorpay(options)
+        rzp.open()
+      }
+
+    }
+  }
 
   return (
     <div className="h-[calc(100vh-100px)] sm:h-[calc(100vh-140px)] max-w-7xl w-full mx-auto flex flex-col">
@@ -198,7 +244,7 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                <Button variant="primary" className="w-full my-4" onClick={placeOrder} disabled={selectedAddress === null}>
+                <Button variant="primary" className="w-full my-4" onClick={handleCheckout} disabled={selectedAddress === null}>
                   Place Order • ₹{amount}
                 </Button>
 

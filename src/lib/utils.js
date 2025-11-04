@@ -16,29 +16,39 @@ export const formatDate = (dateString) => {
   });
 };
 
+export const loadScript = (src) => {
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = src;
+    script.onload = () => resolve(true)
+    script.onerror = () => resolve(false)
+    document.body.appendChild(script)
+  })
+}
+
 export const initialState = {
-    userInfo: null,
-    addresses: [],
-    completedOrders: [],
-    pendingOrders: [],
-    products: [],
-    cartItems: [],
-    restaurants: [],
-    subscriptions: [],
-    vegMode: false,
-    category: "dish",
-    moveIndex: null,
-    menuItems: [],
-    showMenu: false,
-    showMenuRestaurant: {},
-    orderProducts: [],
-    displayProducts: [],
-    orderAmount: 0,
-    deliveryCharge: 20,
-    platFormFee: 1.5,
-    gst: 0,
-    orderAddress: null,
-    paymentMode: "online",
-    isOrderFromCart: false,
+  userInfo: null,
+  addresses: [],
+  completedOrders: [],
+  pendingOrders: [],
+  products: [],
+  cartItems: [],
+  restaurants: [],
+  subscriptions: [],
+  vegMode: false,
+  category: "dish",
+  moveIndex: null,
+  menuItems: [],
+  showMenu: false,
+  showMenuRestaurant: {},
+  orderProducts: [],
+  displayProducts: [],
+  orderAmount: 0,
+  deliveryCharge: 20,
+  platFormFee: 1.5,
+  gst: 0,
+  orderAddress: null,
+  paymentMode: "online",
+  isOrderFromCart: false,
 }
 

@@ -23,3 +23,4 @@ export const ADD_ADDRESS = `${AUTH_ROUTES}/add-address`
 export const PLACE_ORDER = `${AUTH_ROUTES}/create-order`
 export const CANCLE_ORDER = `${AUTH_ROUTES}/cancel-order`
 export const GET_ORDER_DETAILS = `${AUTH_ROUTES}/get-orders`
+export const INITIATE_PAYMENT = `${AUTH_ROUTES}/initiate-payment`
