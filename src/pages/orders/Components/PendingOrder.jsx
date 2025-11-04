@@ -34,7 +34,7 @@ const PendingOrder = ({ order, showOrder, setOrder }) => {
     };
 
     const totalItems = order.products?.length || 0;
-    const firstProductName = order.products?.[0]?.product?.name || 'No items';
+    const firstProductName = order.products?.[0]?.name || 'No items';
     const hasMoreItems = order.products?.length > 1;
 
     const handleClick = () => {

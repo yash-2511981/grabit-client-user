@@ -81,7 +81,7 @@ const Checkout = () => {
             contact: userInfo.phone,
           },
           theme: {
-            color: '#FFD700', 
+            color: '#FFD700',
           },
         };
 
