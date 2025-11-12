@@ -40,10 +40,10 @@ const Checkout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderAmount, gst])
 
-  const placeOrder = async (razorpayOrderId) => {
+  const placeOrder = async (razorpay_payment_id, razorpay_order_id) => {
     if (selectedAddress === null) return;
     const result = await post(PLACE_ORDER,
-      { paymentMode, orderProducts, orderAddress, isOrderFromCart, razorpayOrderId })
+      { paymentMode, orderProducts, orderAddress, isOrderFromCart, razorpay_payment_id, razorpay_order_id })
     if (result.success) {
       updatePendingOrders(result.data.order)
       navigate("/orders")
@@ -62,7 +62,6 @@ const Checkout = () => {
         return;
       }
       if (requestPayment.success) {
-
         const { razorpayOrderId, amount } = requestPayment.data
 
         const options = {
@@ -72,8 +71,8 @@ const Checkout = () => {
           name: 'Grabit',
           description: 'Payment integration in test mode',
           order_id: razorpayOrderId,
-          handler: async () => {
-            await placeOrder(razorpayOrderId);
+          handler: async (response) => {
+            await placeOrder(response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature);
           },
           prefill: {
             name: userInfo.firstName + ' ' + userInfo.lastName,
